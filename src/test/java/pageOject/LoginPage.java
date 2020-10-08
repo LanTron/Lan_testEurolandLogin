@@ -28,8 +28,8 @@ public class LoginPage {
     By emailLocator = By.cssSelector("input#UserEmail");
     By resetBtnLocator = By.cssSelector("div.forgot-pass-panel button");
     By cancelBtnLocator = By.linkText("Cancel");
-    By resetErrorLabel = By.cssSelector("span.field-validation-error");
-    By invalidResetMessage = By.cssSelector("p.after-message");
+    By resetErrorLabel = By.cssSelector("div.field-validation-error");
+    By validationResetMessage = By.cssSelector("p.after-message");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -68,19 +68,23 @@ public class LoginPage {
         return this.getResetPasswordLabel().findElement(resetBtnLocator);
     }
     public WebElement getResetErrorLabel(){
-        return this.getResetPasswordLabel().findElement(resetErrorLabel);
+        WebDriverWait waiter = new WebDriverWait(this.driver, 20);
+        WebElement resetErrorLabelEl = waiter.until(ExpectedConditions.presenceOfElementLocated(resetErrorLabel));
+        return resetErrorLabelEl;
     }
 
-    public WebElement getInvalidResetMessage(){
+    public WebElement validationResetMessage(){
         WebDriverWait waiter = new WebDriverWait(this.driver, 20);
-        WebElement invalidEmailResetMessage = waiter.until(ExpectedConditions.visibilityOfElementLocated(invalidResetMessage));
-        return invalidEmailResetMessage;
+        WebElement validationEmailResetMessage = waiter.until(ExpectedConditions.visibilityOfElementLocated(validationResetMessage));
+        return validationEmailResetMessage;
     }
+
     public WebElement getCancelBtn(){
 
         return this.getResetPasswordLabel().findElement(cancelBtnLocator);
     }
-    public WebElement getActiveEl(){
+    public WebElement getActiveEl() throws InterruptedException{
+        Thread.sleep(1000);
         return this.driver.switchTo().activeElement();
     }
 }

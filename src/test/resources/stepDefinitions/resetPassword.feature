@@ -15,7 +15,7 @@ Feature: Reset password
   Scenario Outline: Show error message when user reset password with invalid email
     Given The reset password page has been shown
     When The user reset password with an invalid email <value>
-    Then The error message "Not a valid email" is shown in red color
+    Then The error message "Not a valid email" is shown in red color below Email field
     Examples:
       | value          |
       | -              |
@@ -34,7 +34,7 @@ Feature: Reset password
   Scenario: Show message when user reset password with an email available on system
     Given The reset password page has been shown
     When The user reset password with "support@gmail.com" available on system
-    Then The message "An email has been sent to your email address.Open the e-mail and select a link to reset your password" is shown
+    Then The successful reset message "An email has been sent to your email address.Open the e-mail and select a link to reset your password" is shown
 
   #scenario 6
   Scenario: Redirect to login page when user click close button

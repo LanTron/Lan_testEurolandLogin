@@ -76,7 +76,7 @@ public class ResetPasswordStepDefinitions {
     }
 
     @Then("^The error message \"([^\"]*)\" is shown in red color below Email field$")
-    public void the_error_message_something_is_shown_in_red_color_below_email_field(String message) {
+    public void the_error_message_something_is_shown_in_red_color_below_email_field(String message){
         Assert.assertEquals(message, this.loginPage.getResetErrorLabel().getText());
         Assert.assertEquals("rgba(255, 0, 0, 1)", this.loginPage.getResetErrorLabel().getCssValue("color"));
 
@@ -84,14 +84,18 @@ public class ResetPasswordStepDefinitions {
 
     @Then("^The message \"([^\"]*)\" is shown$")
     public void the_message_something_is_shown(String message) {
-        Assert.assertEquals(message, this.loginPage.getInvalidResetMessage().getText());
+        Assert.assertEquals(message, this.loginPage.validationResetMessage().getText());
+
+    }
+    @Then("^The successful reset message \"([^\"]*)\" is shown$")
+    public void the_successful_reset_message_something_is_shown(String message) {
+        Assert.assertEquals(message, this.loginPage.validationResetMessage().getText());
 
     }
 
     @Then("^It will redirect to login page$")
-    public void it_will_redirect_to_login_page() {
+    public void it_will_redirect_to_login_page() throws InterruptedException {
         Assert.assertEquals("UserName", this.loginPage.getActiveEl().getAttribute("id"));
-
 
     }
 

@@ -52,12 +52,18 @@ public class LoginStepDefinitions {
         this.loginPage.loginBtn.click();
     }
 
-    @When("^The user login with invalid credentials: email \"([^\"]*)\" and password \"([^\"]*)\" $")
+    /*@When("^The user login with invalid credentials: email \"([^\"]*)\" and password \"([^\"]*)\" $")
     public void the_user_login_with_invalid_credentials_email_something_and_password_something(String email, String password){
         this.loginPage.username.sendKeys(email);
         this.loginPage.password.sendKeys(password);
         this.loginPage.loginBtn.click();
 
+    }*/
+    @When("^The user login with invalid credentials: email \"([^\"]*)\" and password \"([^\"]*)\"$")
+    public void the_user_login_with_invalid_credentials_email_something_and_password_something(String strArg1, String strArg2){
+        this.loginPage.username.sendKeys(strArg1);
+        this.loginPage.password.sendKeys(strArg2);
+        this.loginPage.loginBtn.click();
     }
 
 
@@ -91,7 +97,7 @@ public class LoginStepDefinitions {
 
     }
     @Then("^The error message \"([^\"]*)\" is shown in red color$")
-    public void the_error_message_something_is_shown_in_red_color(String message){
+    public void the_error_message_something_is_shown_in_red_color(String message) {
         Assert.assertEquals(message, this.loginPage.getValidationErrorMessage().getText());
         Assert.assertEquals("rgba(255, 0, 0, 1)", this.loginPage.getValidationErrorMessage().getCssValue("color"));
     }
