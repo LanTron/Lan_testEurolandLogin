@@ -105,6 +105,7 @@ public class LoginStepDefinitions {
 
     @Then("^The Customer Interface 2 will show$")
     public void the_customer_interface_2_will_show() {
+        Assert.assertTrue(this.loginPage.getCustomerInterface()!=null);
 
     }
 

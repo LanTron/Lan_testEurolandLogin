@@ -30,6 +30,7 @@ public class LoginPage {
     By cancelBtnLocator = By.linkText("Cancel");
     By resetErrorLabel = By.cssSelector("div.field-validation-error");
     By validationResetMessage = By.cssSelector("p.after-message");
+    By customerInterface = By.cssSelector("div.wrapper");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -51,6 +52,11 @@ public class LoginPage {
         WebElement validateMessage = waiter.until(ExpectedConditions.visibilityOfElementLocated(validationErrorLocator));
         return validateMessage;
 
+    }
+    public WebElement getCustomerInterface(){
+        WebDriverWait waiter = new WebDriverWait(this.driver, 20);
+        WebElement customerInterfaceEl = waiter.until(ExpectedConditions.visibilityOfElementLocated(customerInterface));
+        return customerInterfaceEl;
     }
 
     public WebElement getResetPasswordLabel(){
